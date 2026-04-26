@@ -1,0 +1,1289 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MEDHIRA - Local multimodal graph-intelligence system">
+      
+      
+        <meta name="author" content="MEDHIRA">
+      
+      
+        <link rel="canonical" href="https://agsuperbrain.readthedocs.io/cli/">
+      
+      
+        <link rel="prev" href="../comparison/">
+      
+      
+        <link rel="next" href="../mcp/">
+      
+      
+      <link rel="icon" href="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>CLI Reference - Super-Brain</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Super-Brain" class="md-header__button md-logo" aria-label="Super-Brain" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Super-Brain
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HELLOMEDHIRA/agsuperbrain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../install/" class="md-tabs__link">
+        
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparison/" class="md-tabs__link">
+        
+  
+    
+  
+  Why Super-Brain
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp/" class="md-tabs__link">
+        
+  
+    
+  
+  IDE Integration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Super-Brain" class="md-nav__button md-logo" aria-label="Super-Brain" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png" alt="logo">
+
+    </a>
+    Super-Brain
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HELLOMEDHIRA/agsuperbrain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Super-Brain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    CLI Reference
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    CLI Reference
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#command-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doctor" class="md-nav__link">
+    <span class="md-ellipsis">
+      doctor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingestion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingestion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingest" class="md-nav__link">
+    <span class="md-ellipsis">
+      ingest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ingest-doc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest-audio" class="md-nav__link">
+    <span class="md-ellipsis">
+      ingest-audio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Indexing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#index-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      index-vectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    <span class="md-ellipsis">
+      link
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying" class="md-nav__link">
+    <span class="md-ellipsis">
+      Querying
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Querying">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ask" class="md-nav__link">
+    <span class="md-ellipsis">
+      ask
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      search-vectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    <span class="md-ellipsis">
+      query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      inspect-function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      stats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualize
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifecycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#watch" class="md-nav__link">
+    <span class="md-ellipsis">
+      watch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      clean
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      import
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-ide-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP / IDE integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCP / IDE integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp-serve" class="md-nav__link">
+    <span class="md-ellipsis">
+      mcp-serve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-platform-install-uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Per-platform install / uninstall
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exit codes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="cli-reference">CLI Reference</h1>
+<p>Complete command reference for <code>agsuperbrain</code>. Every command below is verified against the current codebase.</p>
+<p>Run <code>agsuperbrain --help</code> for the live list, or <code>agsuperbrain &lt;command&gt; --help</code> for a single command's flags.</p>
+<hr />
+<h2 id="command-map">Command map</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup</td>
+<td><code>init</code>, <code>doctor</code></td>
+</tr>
+<tr>
+<td>Ingestion</td>
+<td><code>ingest</code>, <code>ingest-doc</code>, <code>ingest-audio</code></td>
+</tr>
+<tr>
+<td>Indexing</td>
+<td><code>index-vectors</code>, <code>link</code></td>
+</tr>
+<tr>
+<td>Querying</td>
+<td><code>ask</code>, <code>search-vectors</code>, <code>query</code>, <code>inspect-function</code></td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td><code>stats</code>, <code>report</code>, <code>cluster</code>, <code>visualize</code></td>
+</tr>
+<tr>
+<td>Lifecycle</td>
+<td><code>watch</code>, <code>clean</code>, <code>export</code>, <code>import</code></td>
+</tr>
+<tr>
+<td>MCP / IDE</td>
+<td><code>mcp-serve</code>, <code>install</code>, <code>&lt;ide&gt;-install</code>, <code>&lt;ide&gt;-uninstall</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="setup">Setup</h2>
+<h3 id="init"><code>init</code></h3>
+<p>Initialize Super-Brain in the current project — one command does everything.</p>
+<p><code>bash
+agsuperbrain init
+agsuperbrain init --path ./my-project
+agsuperbrain init --src ./apps/backend     # explicit source directory
+agsuperbrain init --skip-ingest            # config only; ingest later</code></p>
+<p>Performs, in order:</p>
+<ol>
+<li>Writes <code>.agsuperbrain/config.yaml</code>, <code>.agsuperbrainignore</code>, and updates <code>.gitignore</code> and <code>.claude/settings.json</code>.</li>
+<li>Runs <code>ingest</code> on your project root. The extractor walks every subdirectory and automatically skips <code>.venv</code>, <code>node_modules</code>, <code>__pycache__</code>, <code>.git</code>, <code>dist</code>, <code>build</code>, <code>.tox</code>, and other standard noise — so one command works for flat Python, src-layout Python, Maven/Gradle/Spring Boot (<code>src/main/java/…</code>), Go (<code>cmd/</code>, <code>internal/</code>, <code>pkg/</code>), Rust crates, .NET solutions, Rails, Flutter (<code>lib/</code>), Swift (<code>Sources/</code>), Unity, Unreal, and monorepos. Override with <code>--src &lt;path&gt;</code> to target a specific workspace. Skip entirely with <code>--skip-ingest</code>.</li>
+<li>Runs <code>index-vectors</code> for semantic search (downloads an ~80 MB embedding model on first run).</li>
+<li>Starts the background file watcher so subsequent edits are incrementally re-indexed.</li>
+</ol>
+<p>By the time <code>init</code> finishes, your graph is populated and your watcher is live.</p>
+<h3 id="doctor"><code>doctor</code></h3>
+<p>Health check every component.</p>
+<p><code>bash
+agsuperbrain doctor</code></p>
+<p>Verifies: graph DB, vector DB, tree-sitter language pack, embedding model, optional FFmpeg. Reports any missing pieces with fix instructions.</p>
+<hr />
+<h2 id="ingestion">Ingestion</h2>
+<h3 id="ingest"><code>ingest</code></h3>
+<p>Parse source code into the graph.</p>
+<p><code>bash
+agsuperbrain ingest ./src
+agsuperbrain ingest ./src ./lib ./services</code></p>
+<p>Walks every directory argument, picks files whose language tree-sitter supports, extracts functions/methods/classes and their call relationships, writes them to the graph. Pure AST — no LLM calls.</p>
+<h3 id="ingest-doc"><code>ingest-doc</code></h3>
+<p>Ingest documents (PDF, DOCX, PPTX, MD, TXT, HTML).</p>
+<p><code>bash
+agsuperbrain ingest-doc ./design-docs
+agsuperbrain ingest-doc ./README.md ./ARCHITECTURE.md</code></p>
+<p>Extracts sections, headings, and concepts; each becomes a graph node linked to its document.</p>
+<h3 id="ingest-audio"><code>ingest-audio</code></h3>
+<p>Transcribe and ingest audio or video.</p>
+<p><code>bash
+agsuperbrain ingest-audio ./meetings/standup.mp3
+agsuperbrain ingest-audio https://youtube.com/watch?v=xxxx</code></p>
+<p>Accepts local files (MP3, WAV, MP4, etc.) or YouTube URLs. Uses local faster-whisper — nothing is uploaded. Segments become graph nodes with timestamps.</p>
+<p>Requires FFmpeg on your <code>PATH</code>.</p>
+<hr />
+<h2 id="indexing">Indexing</h2>
+<h3 id="index-vectors"><code>index-vectors</code></h3>
+<p>Embed every function, document section, and transcript segment into the vector store for semantic search.</p>
+<p><code>bash
+agsuperbrain index-vectors</code></p>
+<p>Uses a local sentence-transformer model (~80 MB, downloaded on first run). Incremental on subsequent runs — only new/changed nodes are re-embedded.</p>
+<h3 id="link"><code>link</code></h3>
+<p>Build cross-modal links between code, documents, and audio via keyword overlap.</p>
+<p><code>bash
+agsuperbrain link</code></p>
+<p>Run this after any combination of <code>ingest</code>, <code>ingest-doc</code>, <code>ingest-audio</code> to connect related content across modalities.</p>
+<hr />
+<h2 id="querying">Querying</h2>
+<h3 id="ask"><code>ask</code></h3>
+<p>Natural-language question with deterministic evidence.</p>
+<p><code>bash
+agsuperbrain ask "how does DataProcessor initialize?"
+agsuperbrain ask "what validates JWT tokens?" --llm</code></p>
+<p>Flags:</p>
+<ul>
+<li><code>--llm</code> — use the local LLM to phrase the answer. Without it, you get evidence directly.</li>
+<li><code>--db &lt;path&gt;</code> — override the graph DB path.</li>
+</ul>
+<p>Returns the answer, the nodes used as evidence (score, hops, source file, line number), and the confidence score.</p>
+<h3 id="search-vectors"><code>search-vectors</code></h3>
+<p>Pure semantic search over the vector index.</p>
+<p><code>bash
+agsuperbrain search-vectors "payment processing"
+agsuperbrain search-vectors "error handling" --limit 10</code></p>
+<p>Ranks all embedded nodes by cosine similarity.</p>
+<h3 id="query"><code>query</code></h3>
+<p>Raw Cypher query against the graph.</p>
+<p><code>bash
+agsuperbrain query "MATCH (f:Function) RETURN f.qualified_name LIMIT 10"
+agsuperbrain query "MATCH (f:Function)-[:CALLS]-&gt;(g:Function) WHERE f.name='main' RETURN g.qualified_name"</code></p>
+<p>For advanced users who want to ask questions the high-level commands don't cover.</p>
+<h3 id="inspect-function"><code>inspect-function</code></h3>
+<p>Show a function's full body, docstring, callers, and callees.</p>
+<p><code>bash
+agsuperbrain inspect-function DataProcessor.process
+agsuperbrain inspect-function main</code></p>
+<p>Accepts either a qualified name (<code>ClassName.method</code>) or a bare name (returns the first match).</p>
+<hr />
+<h2 id="analysis">Analysis</h2>
+<h3 id="stats"><code>stats</code></h3>
+<p>Quick statistics about the graph.</p>
+<p><code>bash
+agsuperbrain stats</code></p>
+<p>Counts per node type (Module, Function, Class, Document, Section, Concept, Audio, Transcript, etc.) and per edge type.</p>
+<h3 id="report"><code>report</code></h3>
+<p>Generate <code>GRAPH_REPORT.md</code> with god-nodes, cross-module dependencies, orphan modules, and suggested follow-up questions.</p>
+<p><code>bash
+agsuperbrain report</code></p>
+<p>Writes to the project root. Useful for onboarding a new teammate or auditing architecture drift.</p>
+<h3 id="cluster"><code>cluster</code></h3>
+<p>Run Leiden community detection on the call graph.</p>
+<p><code>bash
+agsuperbrain cluster</code></p>
+<p>Groups functions into subsystems without any manual tagging. Results stored in the graph and visible via <code>visualize</code>.</p>
+<h3 id="visualize"><code>visualize</code></h3>
+<p>Generate an interactive Cytoscape.js visualization.</p>
+<p><code>bash
+agsuperbrain visualize output/graph.html
+agsuperbrain visualize output/graph.html --root DataProcessor.process --depth 2</code></p>
+<p>Open the output HTML in any browser. Click nodes to navigate, drag to rearrange.</p>
+<hr />
+<h2 id="lifecycle">Lifecycle</h2>
+<h3 id="watch"><code>watch</code></h3>
+<p>Foreground file watcher for manual control (the one started by <code>init</code> runs in the background).</p>
+<p><code>bash
+agsuperbrain watch ./src           # continuous
+agsuperbrain watch ./src --once    # single pass then exit</code></p>
+<p>Changes are detected by content hash, re-indexed incrementally, and deleted files are swept from the graph.</p>
+<h3 id="clean"><code>clean</code></h3>
+<p>Remove all Super-Brain data from the project.</p>
+<p><code>bash
+agsuperbrain clean
+agsuperbrain clean --yes     # skip confirmation</code></p>
+<p>Deletes <code>.agsuperbrain/</code> and its contents. Your code is untouched.</p>
+<h3 id="export"><code>export</code></h3>
+<p>Dump the graph to a JSON file for backup or transfer.</p>
+<p><code>bash
+agsuperbrain export ./backup.json</code></p>
+<h3 id="import"><code>import</code></h3>
+<p>Load a graph from a JSON dump.</p>
+<p><code>bash
+agsuperbrain import ./backup.json</code></p>
+<p>Use together with <code>export</code> to move a graph between machines or snapshot a known-good state.</p>
+<hr />
+<h2 id="mcp-ide-integration">MCP / IDE integration</h2>
+<h3 id="mcp-serve"><code>mcp-serve</code></h3>
+<p>Start the MCP server over stdio JSON-RPC.</p>
+<p><code>bash
+agsuperbrain mcp-serve</code></p>
+<p>Exposes ten tools to any MCP-compatible client: <code>search_code</code>, <code>find_callers</code>, <code>find_callees</code>, <code>get_function_body</code>, <code>path_between</code>, <code>closure</code>, <code>get_subgraph</code>, <code>stats</code>, <code>list_modules</code>, <code>list_functions</code>.</p>
+<p>Most users don't run this manually — the <code>&lt;ide&gt;-install</code> commands wire it up for you.</p>
+<h3 id="install"><code>install</code></h3>
+<p>Install Super-Brain integration for a specific platform or all of them.</p>
+<p><code>bash
+agsuperbrain install --platform all
+agsuperbrain install --platform claude
+agsuperbrain install --platform cursor</code></p>
+<p>Accepts: <code>all</code>, <code>claude</code>, <code>cursor</code>, <code>aider</code>, <code>codex</code>, <code>opencode</code>, <code>vscode</code>, <code>openclaw</code>, <code>droid</code>, <code>trae</code>, <code>gemini</code>, <code>hermes</code>, <code>kiro</code>, <code>antigravity</code>, <code>copilot</code>.</p>
+<h3 id="per-platform-install-uninstall">Per-platform install / uninstall</h3>
+<p>Each supported IDE has its own dedicated command:</p>
+<p><code>bash
+agsuperbrain claude-install           agsuperbrain claude-uninstall
+agsuperbrain cursor-install           agsuperbrain cursor-uninstall
+agsuperbrain aider-install            agsuperbrain aider-uninstall
+agsuperbrain codex-install
+agsuperbrain opencode-install
+agsuperbrain copilot-install
+agsuperbrain vscode-install
+agsuperbrain gemini-install
+agsuperbrain hermes-install
+agsuperbrain kiro-install
+agsuperbrain antigravity-install
+agsuperbrain openclaw-install
+agsuperbrain droid-install
+agsuperbrain trae-install</code></p>
+<p>Uninstall commands exist for Claude, Cursor, and Aider today. For other platforms, integration is additive and non-destructive — remove the installed files manually (see <a href="../mcp/">IDE Integration</a> for exact file paths).</p>
+<hr />
+<h2 id="global-flags">Global flags</h2>
+<p>Most commands accept:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--db &lt;path&gt;</code></td>
+<td>Override graph DB path</td>
+<td><code>./.agsuperbrain/graph</code></td>
+</tr>
+<tr>
+<td><code>--path &lt;path&gt;</code></td>
+<td>Override project path (install commands)</td>
+<td><code>.</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exit-codes">Exit codes</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Error (details printed to stderr)</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Bad CLI arguments</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="../mcp/">IDE Integration</a> — detailed per-platform setup</li>
+<li><a href="../architecture/">Architecture</a> — what happens under the hood</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.integrated", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "toc.integrate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

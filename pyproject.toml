@@ -1,0 +1,176 @@
+[project]
+name = "agsuperbrain"
+version = "0.0.1"
+description = "Super-Brain: Your codebase's working memory. Local graph + vector intelligence for AI coding assistants."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "MEDHIRA" }]
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    "faster-whisper>=1.2.1",
+    "graspologic>=3.4.4",
+    "kuzu>=0.11.3",
+    "llama-cpp-python>=0.3.20",
+    "markitdown>=0.1.5",
+    "networkx>=3.6.1",
+    "pydantic>=2.13.3",
+    "pyvis>=0.3.2",
+    "qdrant-client>=1.17.1",
+    "rich>=15.0.0",
+    "sentence-transformers>=5.4.1",
+    "tree-sitter>=0.25.2",
+    "tree-sitter-language-pack==1.6.0",
+    "typer>=0.24.2",
+    "watchfiles>=1.1.1",
+    "yt-dlp>=2026.3.17",
+    "pyyaml>=6.0.3",
+]
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.7.0",
+    "pymdown-extensions>=10.0",
+]
+dev = [
+    "commitizen>=4.13.0",
+    "ipykernel>=7.2.0",
+    "iprogress>=0.4",
+    "pre-commit>=4.5.0",
+    "pyrefly>=0.60.0",
+    "ruff>=0.15.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agsuperbrain"]
+
+[project.scripts]
+agsuperbrain = "agsuperbrain.cli:app"
+
+[tool.hatch.metadata]
+packages-dir = "."
+
+# ── Ruff ──────────────────────────────────────────────────────────────────────
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+src = ["agsuperbrain", "tests", "scripts"]
+extend-exclude = ["main.py", "output", ".agsuperbrain"]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "SIM",    # flake8-simplify
+    "T20",    # flake8-print (catches stray print())
+    "RUF",    # ruff-specific rules
+    "ASYNC",  # flake8-async
+    "S",      # flake8-bandit (security)
+    "C4",     # flake8-comprehensions
+    "PIE",    # flake8-pie
+    "RET",    # flake8-return
+    "TCH",    # flake8-type-checking
+]
+ignore = [
+    "E501",    # line length handled by formatter
+    "S101",    # assert usage is fine for us
+    "B008",    # function call in default argument (Pydantic Field)
+    "RET504",  # unnecessary assignment before return
+    "UP007",   # X | Y union syntax (keep Optional for compat docs)
+    "RUF001",  # ambiguous unicode — we use box-drawing chars in log banners
+    "RUF002",  # ambiguous unicode in docstrings
+    "RUF003",  # ambiguous unicode in comments
+    "S110",    # try-except-pass — intentional silencing in fallback paths
+    "S112",    # try-except-continue — intentional in retry loops
+    "ASYNC109", # async-function-with-timeout — we use asyncio.wait_for explicitly
+    "N806",    # variable in function should be lowercase (we use PascalCase for class aliases)
+    "N818",    # exception name should end in Error
+    "SIM105",  # use contextlib.suppress — explicit try/except is clearer here
+    "SIM102",  # collapsible if — sometimes nested ifs are clearer
+    "SIM118",  # in-dict-keys — .keys() is sometimes more explicit
+    "TC001",   # typing-only-first-party-import — can break runtime
+    "TC002",   # typing-only-third-party-import — can break runtime
+    "TC003",   # typing-only-stdlib-import — can break runtime
+    "UP042",   # replace str+Enum with StrEnum — keep backward compat
+    "RUF005",  # collection-literal-concatenation — tuple concat is fine
+]
+
+[tool.ruff.lint.per-file-ignores]
+"test*.py" = ["S", "T20", "E402", "N817", "B006", "B011", "RUF059"]
+"examples/*.py" = ["S", "T20", "T201"]
+"scripts/*.py" = ["T201", "E402"]
+
+# MCP server uses stdout print() as the JSON-RPC transport
+"agsuperbrain/mcp/server.py" = ["T201"]
+
+# CLI and audio_fetcher spawn known system binaries (agsuperbrain, yt-dlp, ffmpeg)
+# by name on PATH — user input only flows through explicit argv args.
+"agsuperbrain/cli.py" = ["S603", "S607"]
+"agsuperbrain/preprocessing/audio_fetcher.py" = ["S603", "S607", "S324"]
+
+# file-content hash for change detection, not a security primitive
+"agsuperbrain/core/watcher.py" = ["S324"]
+
+# networkx convention: graph argument is conventionally named `G`
+"agsuperbrain/memory/graph/clustering.py" = ["N803"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["agsuperbrain"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+# ── Pyrefly ───────────────────────────────────────────────────────────────────
+
+[tool.pyrefly]
+project-includes = ["agsuperbrain"]
+project-excludes = [".agsuperbrain", "output", "main.py"]
+python-version = "3.11"
+
+# Third-party runtime deps that may not be installed in a lint-only env.
+# Pyrefly would otherwise emit false-positive `missing-import` errors.
+replace-imports-with-any = [
+    "tree_sitter",
+    "tree_sitter_language_pack",
+    "kuzu",
+    "qdrant_client",
+    "qdrant_client.*",
+    "sentence_transformers",
+    "llama_cpp",
+    "huggingface_hub",
+    "faster_whisper",
+    "markitdown",
+    "graspologic",
+    "graspologic.partition",
+    "pyvis",
+    "pyvis.*",
+    "watchfiles",
+    "yt_dlp",
+]
+
+# ── Commitizen ────────────────────────────────────────────────────────────────
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.4"
+version_files = [
+    "pyproject.toml:version",
+    "agsuperbrain/__init__.py:__version__",
+]
+tag_format = "v$version"
+update_changelog_on_bump = true
+changelog_file = "CHANGELOG.md"
+bump_message = "release: v$new_version"

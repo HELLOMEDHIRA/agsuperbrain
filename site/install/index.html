@@ -1,0 +1,1019 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MEDHIRA - Local multimodal graph-intelligence system">
+      
+      
+        <meta name="author" content="MEDHIRA">
+      
+      
+        <link rel="canonical" href="https://agsuperbrain.readthedocs.io/install/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../quickstart/">
+      
+      
+      <link rel="icon" href="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>Install - Super-Brain</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Super-Brain" class="md-header__button md-logo" aria-label="Super-Brain" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Super-Brain
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Install
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HELLOMEDHIRA/agsuperbrain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../comparison/" class="md-tabs__link">
+        
+  
+    
+  
+  Why Super-Brain
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cli/" class="md-tabs__link">
+        
+  
+    
+  
+  CLI Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp/" class="md-tabs__link">
+        
+  
+    
+  
+  IDE Integration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Super-Brain" class="md-nav__button md-logo" aria-label="Super-Brain" data-md-component="logo">
+      
+  <img src="https://raw.githubusercontent.com/HELLOMEDHIRA/medhira/main/assets/medhira-logo.png" alt="logo">
+
+    </a>
+    Super-Brain
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HELLOMEDHIRA/agsuperbrain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operating system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-dependency-ffmpeg-only-if-you-plan-to-ingest-audiovideo" class="md-nav__link">
+    <span class="md-ellipsis">
+      System dependency — FFmpeg (only if you plan to ingest audio/video)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-super-brain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Super-Brain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Super-Brain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: pip
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-uv-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: uv (recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 3: From source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify the install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-run-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      First-run setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First-run setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overriding-the-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overriding the defaults
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Super-Brain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IDE Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="installation">Installation</h1>
+<p>Super-Brain runs entirely on your machine. One package, one command, no accounts.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<h3 id="python">Python</h3>
+<p>Python <strong>3.11 or newer</strong>.</p>
+<p><code>bash
+python --version</code></p>
+<p>If you need to upgrade, we recommend <a href="https://docs.astral.sh/uv/"><code>uv</code></a> — it installs Python and manages virtual environments in one tool.</p>
+<h3 id="operating-system">Operating system</h3>
+<ul>
+<li><strong>macOS</strong> 12+</li>
+<li><strong>Linux</strong> (Ubuntu 22.04+, Debian 12+, Fedora 38+, Arch)</li>
+<li><strong>Windows</strong> 10/11 (native or WSL2)</li>
+</ul>
+<h3 id="disk-space">Disk space</h3>
+<ul>
+<li><strong>Minimum</strong>: 500 MB (code graph only, no LLM)</li>
+<li><strong>Recommended</strong>: 5 GB (includes embedding model cache)</li>
+<li><strong>With local LLM</strong>: 8 GB (adds ~700 MB for Llama-3.2-1B on first use)</li>
+</ul>
+<h3 id="system-dependency-ffmpeg-only-if-you-plan-to-ingest-audiovideo">System dependency — FFmpeg (only if you plan to ingest audio/video)</h3>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td><code>brew install ffmpeg</code></td>
+</tr>
+<tr>
+<td>Ubuntu / Debian</td>
+<td><code>sudo apt install ffmpeg</code></td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td><code>sudo dnf install ffmpeg</code></td>
+</tr>
+<tr>
+<td>Arch</td>
+<td><code>sudo pacman -S ffmpeg</code></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>winget install ffmpeg</code> or <code>choco install ffmpeg</code></td>
+</tr>
+</tbody>
+</table>
+<p>FFmpeg is <strong>only required</strong> for <code>ingest-audio</code>. You can skip it if you're only ingesting code or documents.</p>
+<hr />
+<h2 id="install-super-brain">Install Super-Brain</h2>
+<h3 id="option-1-pip">Option 1: pip</h3>
+<p><code>bash
+pip install agsuperbrain</code></p>
+<h3 id="option-2-uv-recommended">Option 2: uv (recommended)</h3>
+<p><code>bash
+uv add agsuperbrain</code></p>
+<p>uv is faster, resolves dependencies correctly on the first try, and manages Python versions.</p>
+<h3 id="option-3-from-source">Option 3: From source</h3>
+<p><code>bash
+git clone https://github.com/HELLOMEDHIRA/agsuperbrain.git
+cd agsuperbrain
+pip install -e .</code></p>
+<p>Use this if you want to follow <code>main</code> or contribute.</p>
+<hr />
+<h2 id="verify-the-install">Verify the install</h2>
+<p><code>bash
+agsuperbrain doctor</code></p>
+<p>This runs a health check on every component (graph DB, vector DB, tree-sitter parsers, embedding model, optional FFmpeg). If something is missing, <code>doctor</code> tells you what and how to fix it.</p>
+<hr />
+<h2 id="first-run-setup">First-run setup</h2>
+<p>Inside any project directory:</p>
+<p><code>bash
+agsuperbrain init</code></p>
+<p><code>init</code> does four things in one pass:</p>
+<ol>
+<li>Writes <code>.agsuperbrain/config.yaml</code>, <code>.agsuperbrainignore</code>, and updates your <code>.gitignore</code>.</li>
+<li>Runs <code>ingest</code> + <code>index-vectors</code> on your project. The extractor recursively walks from the project root and automatically skips <code>.venv</code>, <code>node_modules</code>, <code>__pycache__</code>, <code>.git</code>, <code>dist</code>, <code>build</code>, <code>.tox</code>, and other standard noise — so it works the same for flat Python, src-layout Python, Maven/Gradle/Spring Boot (<code>src/main/java/…</code>), Go (<code>cmd/</code>, <code>internal/</code>, <code>pkg/</code>), Rust crates, .NET solutions, Rails, Flutter (<code>lib/</code>), Swift (<code>Sources/</code>), Unity, Unreal, and monorepos.</li>
+<li>Starts the background file watcher so subsequent edits are incrementally re-indexed.</li>
+</ol>
+<h3 id="overriding-the-defaults">Overriding the defaults</h3>
+<p><code>bash
+agsuperbrain init --src ./services/api     # ingest just one workspace (monorepos)
+agsuperbrain init --skip-ingest            # only create config + start watcher</code></p>
+<p>Add custom exclusions to <code>.agsuperbrainignore</code> or <code>.gitignore</code> if you want to skip additional directories (e.g., <code>generated/</code>, <code>vendor/</code>, <code>third_party/</code>).</p>
+<hr />
+<h2 id="default-paths">Default paths</h2>
+<p>Super-Brain stores everything inside a single hidden directory:</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Default path</th>
+<th>Configurable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graph database (KùzuDB)</td>
+<td><code>./.agsuperbrain/graph/</code></td>
+<td><code>graph.db_path</code></td>
+</tr>
+<tr>
+<td>Vector store (Qdrant)</td>
+<td><code>./.agsuperbrain/qdrant/</code></td>
+<td><code>vector.db_path</code></td>
+</tr>
+<tr>
+<td>Audio cache</td>
+<td><code>./.agsuperbrain/audio/</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Config</td>
+<td><code>./.agsuperbrain/config.yaml</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>init</code> adds <code>.agsuperbrain/</code> to your <code>.gitignore</code> so nothing gets committed.</p>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<p>Edit <code>.agsuperbrain/config.yaml</code> in your project:</p>
+<p>```yaml</p>
+<h1 id="directories-to-exclude-from-ingestion-merged-with-defaults-like-venv-node_modules">Directories to exclude from ingestion (merged with defaults like .venv, node_modules)</h1>
+<p>exclude:
+  - third_party
+  - generated</p>
+<h1 id="languages-to-prioritize-leave-empty-for-all-306">Languages to prioritize (leave empty for all 306)</h1>
+<p>languages:
+  - python
+  - typescript
+  - go</p>
+<h1 id="watcher-settings">Watcher settings</h1>
+<p>watcher:
+  debounce_ms: 500</p>
+<h1 id="storage">Storage</h1>
+<p>graph:
+  db_path: ./.agsuperbrain/graph</p>
+<p>vector:
+  db_path: ./.agsuperbrain/qdrant
+```</p>
+<p>Changes apply on the next <code>agsuperbrain</code> command — no restart needed.</p>
+<hr />
+<h2 id="uninstall">Uninstall</h2>
+<p><code>bash
+pip uninstall agsuperbrain        # or: uv remove agsuperbrain</code></p>
+<p>To also delete project data:</p>
+<p><code>bash
+agsuperbrain clean                # removes .agsuperbrain/ and its contents</code></p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="agsuperbrain-command-not-found"><code>agsuperbrain: command not found</code></h3>
+<p>Make sure pip's script directory is on your <code>PATH</code>:</p>
+<p>```bash</p>
+<h1 id="macos-linux">macOS / Linux</h1>
+<p>export PATH="$HOME/.local/bin:$PATH"
+```</p>
+<p>On Windows:</p>
+<p><code>powershell
+setx PATH "%PATH%;%APPDATA%\Python\Scripts"</code></p>
+<p>Open a new terminal after changing <code>PATH</code>.</p>
+<h3 id="modulenotfounderror-no-module-named-agsuperbrain"><code>ModuleNotFoundError: No module named 'agsuperbrain'</code></h3>
+<p>Your virtual environment probably isn't active.</p>
+<p>```bash</p>
+<h1 id="macos-linux_1">macOS / Linux</h1>
+<p>source .venv/bin/activate</p>
+<h1 id="windows-powershell">Windows (PowerShell)</h1>
+<p>.venv\Scripts\Activate.ps1
+```</p>
+<h3 id="ffmpeg-not-found">FFmpeg not found</h3>
+<p>Install it per the OS table above and open a new terminal so the updated <code>PATH</code> takes effect.</p>
+<h3 id="kuzudb-qdrant-errors-on-first-run">KùzuDB / Qdrant errors on first run</h3>
+<p>Run <code>agsuperbrain clean</code> then <code>agsuperbrain init</code> to rebuild. This is usually a sign that a previous run was interrupted mid-write.</p>
+<h3 id="slow-first-query">Slow first query</h3>
+<p>The sentence-transformer model downloads on first use (~80 MB). Subsequent queries are instant.</p>
+<hr />
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="../quickstart/">Quick Start</a> — build your first graph in five minutes</li>
+<li><a href="../cli/">CLI Reference</a> — every command explained</li>
+<li><a href="../mcp/">IDE Integration</a> — wire Super-Brain into your editor</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/HELLOMEDHIRA/agsuperbrain" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.integrated", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "toc.integrate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
