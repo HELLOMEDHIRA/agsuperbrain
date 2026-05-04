@@ -143,6 +143,51 @@ Also works with any MCP-speaking agent framework (LangChain, LangGraph, AutoGen,
 
 ---
 
+## Measured performance
+
+Real numbers from a self-corpus pilot (the `agsuperbrain` repository itself; 131 files, 86 Tier-1 source files, ~10.5 min cold ingest, 22.9 MiB total index). Reproducible via `paper/evaluation/run_eval.py`, `run_rq1.py`, `run_rq3.py`.
+
+### Pilot evaluation at a glance
+
+| RQ | Question | Pilot result | Status |
+|---|---|---|---|
+| RQ1 | Extraction accuracy vs. reference analyser | Precision **0.94**, Recall **0.38**, F1 **0.54** | Pilot — Python, vs. `code2flow` 2.5.1 on 247 functions |
+| RQ2 | Query latency (graph + hybrid) | `find_callers` p95 = **2.5 ms**; hybrid `search_code` p95 = **781 ms** | Pilot — n=30 per primitive, single repo |
+| RQ3 | Token-cost reduction vs. context-stuffing | **9.22× aggregate** (210,659 → 22,837 tokens) | Pilot — N=10 queries, 1 LLM (Llama-3.3-70B) |
+| RQ4 | Language coverage (code + doc pipelines) | Python **100%** (40/40), JavaScript **100%** (36/36) per code-file | Pilot — 2 Tier-1 langs; doc pipeline on `.md`/`.html` |
+
+### Token cost — same 10 questions, same LLM (Llama-3.3-70B on Groq)
+
+![Token cost comparison: 210,659 vs 22,837](paper/fig5-rq3-token-comparison.png)
+
+| Mode | Total tokens (10 questions) | Mean per question | Notes |
+|---|---:|---:|---|
+| **Without Super-Brain** (context-stuffing baseline) | **210,659** | 21,066 | packs as much code as fits in the context window |
+| **With Super-Brain** (evidence bundle) | **22,837** | 2,284 | only the retrieved Function/Section evidence |
+| **Reduction** | **9.22× less** (saves 187,822 tokens) | 9.22× | comparable answer quality (within noise) |
+
+For the input prompt specifically the gap widens to **9.49×** (20,870 vs 2,199 tokens per question). At commodity LLM pricing this is roughly an order-of-magnitude cost reduction per developer question — and the index is built once, not per session.
+
+### Extraction & query latency
+
+| Metric | Result |
+|---|---|
+| Code extraction (Python, per code-file) | **100% (40/40)** |
+| Code extraction (JavaScript, per code-file) | **100% (36/36)** |
+| Document extraction (Markdown, Section coverage) | **90% (9/10)** |
+| Document extraction (HTML, Section coverage) | **100% (9/9)** |
+| Edge precision vs. code2flow reference (Python) | **94%** — when SB emits an edge, an independent static analyser confirms it |
+| Edge recall vs. code2flow reference (Python) | **38%** — gap is method-call resolution, the next optimisation target |
+| `find_callers` graph query (p50 / p95) | **2.0 / 2.5 ms** |
+| `find_callees` graph query (p50 / p95) | **2.3 / 3.1 ms** |
+| `closure` graph query, depth 3 (p50 / p95) | **4.3 / 7.4 ms** |
+| Hybrid `search_code` (p50 / p95) | **491 / 781 ms** |
+| Cold-start storage footprint | **22.9 MiB** for 5.4 MiB of source/docs |
+
+> **Pilot scope:** single self-corpus, single LLM for the token-cost study, 10 queries with one rep each. The 9.22× ratio is measured on hand-curated developer questions answerable from the codebase; broader multi-repo, multi-LLM, multi-rep replication is the next milestone. Full caveats: [the paper](paper/super-brain.md#5-evaluation).
+
+---
+
 ## Privacy by default
 
 Every byte Super-Brain touches stays on your machine:

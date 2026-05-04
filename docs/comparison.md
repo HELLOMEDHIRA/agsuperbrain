@@ -97,6 +97,8 @@ This page lists **12 concrete pain points** you hit every week with Claude Code,
 
 **Super-Brain's fix.** Every structural fact in the graph came from tree-sitter walking an AST. If Super-Brain says function A calls function B, the parser observed it at a specific line in a specific file. "Made up" isn't a failure mode the architecture permits.
 
+**Measured (pilot).** Compared against `code2flow` 2.5.1 (a maintained independent static call-graph analyser) on the `agsuperbrain` Python package, Super-Brain achieves **94% edge precision** — when SB emits a call edge, the independent analyser confirms it 94% of the time. The few disagreements are not fabrications but same-name resolution conflicts (a local function shadowing an imported symbol) which the resolver is being tightened to handle. Recall against code2flow is lower at 38%, almost entirely due to method dispatch through class instances — known limitation, the next concrete optimisation target. See [§5.2 of the paper](https://github.com/HELLOMEDHIRA/agsuperbrain/blob/main/paper/super-brain.md#52-rq1--extraction-accuracy-pilot-results-agreement-with-reference-analyser).
+
 ---
 
 ### 10. Token cost for exploration
@@ -104,6 +106,8 @@ This page lists **12 concrete pain points** you hit every week with Claude Code,
 **The problem.** Large context windows are not free. Exploring a 100k-LOC codebase by letting your assistant read files is linear in codebase size — $X per question, growing with every file added.
 
 **Super-Brain's fix.** The cost of a Super-Brain query is flat. It's one vector search plus one or two graph expansions. The answer ships just the relevant function bodies — usually a few hundred tokens total — no matter whether the repo is 1k lines or 1M.
+
+**Measured (pilot).** On a self-corpus pilot of 10 developer queries against the `agsuperbrain` codebase, with both modes answered by Llama-3.3-70B (Groq), Super-Brain consumed 22,837 total tokens vs. 210,659 tokens for a context-stuffing baseline that packs as much code as fits in the model's context window — a **9.22× aggregate reduction** (9.49× on the input side specifically), at comparable answer quality (within noise on a single-LLM, single-judge pilot). Full numbers, caveats, and the reproducible harness are in [the paper](https://github.com/HELLOMEDHIRA/agsuperbrain/blob/main/paper/super-brain.md#54-rq3--token-cost-reduction-pilot-results).
 
 ---
 
@@ -128,6 +132,8 @@ You can disconnect your network cable and Super-Brain keeps working. Your assist
 **The problem.** Top-tier assistants do well on Python, TypeScript, Go. They're noticeably weaker on Kotlin, Dart, Elixir, Nim, Zig, and everything rarer. Mixed-language codebases (think mobile app + C++ core + Python tools) get inconsistent treatment.
 
 **Super-Brain's fix.** Tree-sitter supports **306 programming languages** via `tree-sitter-language-pack`. Super-Brain extracts functions, methods, and call edges from all of them. Tier 1 languages (Python, JS/TS, Go, Rust, Java, C, C++, C#, Ruby, PHP, Kotlin, Swift, Scala) get full extraction including method resolution. The rest get AST-level parsing and symbol extraction — still far beyond text matching.
+
+**Measured (pilot).** Self-corpus extraction on the `agsuperbrain` repository: **100% per-code-file extraction** for both Tier-1 languages exercised — Python (40/40 files containing function definitions) and JavaScript (36/36). The document pipeline reaches 90% Section coverage on Markdown (9/10) and 100% on HTML (9/9). Files with zero function definitions (empty `__init__.py` package markers, single-import shims) correctly produce zero nodes — never a fabricated edge.
 
 ---
 

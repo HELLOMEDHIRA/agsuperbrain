@@ -1,0 +1,58 @@
+{
+  "agreement_metrics": {
+    "f1_sb_vs_c2f": 0.5392,
+    "precision_sb_vs_c2f": 0.94,
+    "recall_sb_vs_c2f": 0.378
+  },
+  "code2flow_raw": {
+    "canon_edges": 373,
+    "canon_nodes": 247,
+    "raw_edges": 517,
+    "raw_nodes": 249
+  },
+  "code2flow_runtime_seconds": 0.402,
+  "disagreement_examples": {
+    "c2f_only_top": [
+      "cli::watch -> graph_store::GraphStore.init_schema",
+      "watcher::FileWatcher._process_batch -> index_pipeline::VectorIndexPipeline.reindex_source_paths",
+      "cli::_build_tools -> embedder::TextEmbedder.__init__",
+      "rule_engine::RuleEngine._extract_with_queries -> rule_engine::_find_enclosing_function",
+      "cli::_do_full_init -> vector_store::VectorStore.__init__",
+      "watcher::FileWatcher.start -> watcher::FileWatcher._process_batch",
+      "watcher::FileWatcher.__init__ -> watcher::FileWatcher._write_status",
+      "cli::doctor -> graph_store::GraphStore.close",
+      "cli::ingest_audio -> audio_fetcher::AudioFetcher.fetch",
+      "cli::index_vectors -> graph_store::GraphStore.__init__"
+    ],
+    "sb_only_top": [
+      "cli::stats -> cli::query",
+      "cli::inspect_function -> cli::query",
+      "code_parser::_get_language -> code_parser::_get_language",
+      "pipeline::link_mentions -> pipeline::link_mentions",
+      "pipeline::link_documented_by -> pipeline::link_documented_by",
+      "server::get_subgraph -> server::get_subgraph",
+      "cli::doctor -> cli::query",
+      "cli::query -> cli::query",
+      "cli::export_graph -> cli::query"
+    ]
+  },
+  "edge_sets_restricted_to_common_funcs": {
+    "c2f_edges": 373,
+    "c2f_only": 232,
+    "sb_edges": 150,
+    "sb_only": 9,
+    "true_positive": 141
+  },
+  "function_sets": {
+    "c2f_functions": 247,
+    "common_functions": 247,
+    "sb_functions": 266
+  },
+  "meta": {
+    "framing": "Agreement with code2flow as reference. Both extractors are static analysers with known blind spots; this is NOT a measurement against absolute ground truth.",
+    "python": "3.12.3",
+    "reference_analyser": "code2flow 2.5.1",
+    "target_dir": "/home/harish/agsbrepo/agsuperbrain",
+    "timestamp": "2026-05-03T05:53:15Z"
+  }
+}

@@ -1,0 +1,438 @@
+{
+  "meta": {
+    "model": "llama-3.3-70b-versatile",
+    "repo": "/home/harish/agsbrepo",
+    "reps": 1,
+    "timestamp": "2026-05-03T04:55:31Z"
+  },
+  "results": [
+    {
+      "category": "lookup",
+      "id": "Q01",
+      "question": "What does the _do_full_init function do, and what major operations does it perform in order?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `_do_full_init` function is not explicitly defined in the provided code. However, based on the context of the code, it appears to be related to the initialization of the Super-Brain project. \n\nThe major operations performed by the Super-Brain project, in order, are:\n\n1. **Code Parsing**: The project parses the code in the specified directories using the `CodeParser` class.\n2. **Import Resolution**: The project resolves imports in the parsed code using the `ImportResolver` class.\n3. **Function Extraction**: The project extracts functions from the parsed code using the `RuleEngine` class.\n4. **Call Graph Construction**: The project constructs a call graph from the extracted functions using the `CodeGraphPipeline` class.\n5. **Vector Indexing**: The project indexes the extracted functions and their corresponding vectors using the `VectorIndexPipeline` class.\n6. **Graph Visualization**: The project visualizes the constructed call graph using the `visualize` function.\n7. **Report Generation**: The project generates a report based on the constructed call graph using the `generate_report` function.\n\nThese operations are performed in the specified order to ensure that the project is properly initialized and the necessary data is collected and processed.",
+            "completion_tokens": 250,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89910,
+            "prompt_tokens": 20873,
+            "total_tokens": 21123,
+            "truncated": true,
+            "wall_s": 5.848
+          },
+          "judge_baseline": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and significant errors, does not match reference answer"
+          },
+          "judge_superbrain": {
+            "score": 1,
+            "why": "mostly incorrect, contains hallucinated claims and lacks specific details about the function's operations"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The evidence does not provide a detailed description of the `_do_full_init` function. However, based on its name, it likely performs a full initialization of the system. The order of operations is not specified, but it may involve calling other functions such as `_ensure_initialized`, `_find_missing_deps`, and `_run_pip_install` to ensure the system is properly set up. The `_do_full_init` function is located in the `cli.py` file.",
+            "completion_tokens": 94,
+            "evidence_included": 75,
+            "evidence_total": 75,
+            "prompt_chars": 6222,
+            "prompt_tokens": 2001,
+            "total_tokens": 2095,
+            "truncated": false,
+            "wall_s": 0.817
+          }
+        }
+      ]
+    },
+    {
+      "category": "navigation",
+      "id": "Q02",
+      "question": "Which CLI commands start the background watcher, and which one starts it implicitly via _ensure_initialized?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The CLI commands that start the background watcher are `agsuperbrain watch` and `agsuperbrain index`. The `agsuperbrain watch` command starts the watcher explicitly, while `agsuperbrain index` starts it implicitly via `_ensure_initialized`.",
+            "completion_tokens": 51,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89926,
+            "prompt_tokens": 20872,
+            "total_tokens": 20923,
+            "truncated": true,
+            "wall_s": 4.21
+          },
+          "judge_baseline": {
+            "score": 1,
+            "why": "mostly incorrect, commands and methods do not match reference answer"
+          },
+          "judge_superbrain": {
+            "score": 2,
+            "why": "incorrectly states init starts implicitly, and misrepresents the role of watch command and FileWatcher.start function"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The `_start_watcher_background` function starts the background watcher. The `init` command starts it implicitly via `_ensure_initialized`. Additionally, the `watch` command also starts the watcher, as indicated by the `FileWatcher.start` function.",
+            "completion_tokens": 50,
+            "evidence_included": 75,
+            "evidence_total": 75,
+            "prompt_chars": 6220,
+            "prompt_tokens": 1995,
+            "total_tokens": 2045,
+            "truncated": false,
+            "wall_s": 2.639
+          }
+        }
+      ]
+    },
+    {
+      "category": "reasoning",
+      "id": "Q03",
+      "question": "How does the HybridRetriever combine vector search with graph expansion?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `HybridRetriever` combines vector search with graph expansion by first performing a vector search to find the top-scoring nodes, and then expanding the graph from those nodes to find additional relevant nodes. The `HybridRetriever` uses the `vector_store` to perform the initial vector search, and then uses the `graph_store` to expand the graph from the top-scoring nodes. The `HybridRetriever` returns a list of `HybridResult` objects, which contain the node ID, node type, text, score, and other metadata. The `HybridRetriever` is used by the `ContextBuilder` to build a compact text bundle for the LLM. \n\nSpecifically, the `HybridRetriever` uses the `vector_store.search` method to perform the initial vector search, and then uses the `graph_store.query` method to expand the graph from the top-scoring nodes. The `HybridRetriever` also uses the `graph_store.get_node` method to retrieve the metadata for each node. \n\nThe `HybridRetriever` is designed to combine the strengths of vector search and graph expansion to provide a more comprehensive and accurate set of search results. The `HybridRetriever` is a key component of the Super-Brain system, and is used to provide context-aware search results for the user. \n\nFor example, the `HybridRetriever` can be used to search for nodes in the graph that are related to a particular topic or concept. The `HybridRetriever` can also be used to search for nodes that are similar to a particular node or set of nodes. The `HybridRetriever` is a flexible and powerful tool that can be used to support a wide range of search and retrieval tasks. \n\nIn the code, the `HybridRetriever` is implemented in the `agsuperbrain/intelligence/retriever.py` file, and is used by the `ContextBuilder` in the `agsuperbrain/intelligence/context_builder.py` file. The `HybridRetriever` is also used by other components of the Super-Brain system, such as the `agsuperbrain/cli.py` file. \n\nOverall, the `HybridRetriever` is a key component of the Super-Brain system, and is used to provide context-aware search results for the user. The `HybridRetriever` combines the strengths of vector search and graph expansion to",
+            "completion_tokens": 512,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89890,
+            "prompt_tokens": 20867,
+            "total_tokens": 21379,
+            "truncated": true,
+            "wall_s": 6.126
+          },
+          "judge_baseline": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and significant errors, including incorrect vector store and graph store names, and lack of detail on scoring and decay"
+          },
+          "judge_superbrain": {
+            "score": 2,
+            "why": "partially correct, lacks specific details and omits key aspects such as scoring and sorting"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The HybridRetriever combines vector search with graph expansion through its `_vector_search` and `_expand_graph` functions. The `_vector_search` function likely performs a vector search, while the `_expand_graph` function expands the graph based on the search results. The `HybridRetriever.query` function may orchestrate this process, utilizing the results of `_vector_search` as input for `_expand_graph` to generate a more comprehensive response.",
+            "completion_tokens": 91,
+            "evidence_included": 66,
+            "evidence_total": 66,
+            "prompt_chars": 5383,
+            "prompt_tokens": 1764,
+            "total_tokens": 1855,
+            "truncated": false,
+            "wall_s": 2.448
+          }
+        }
+      ]
+    },
+    {
+      "category": "lookup",
+      "id": "Q04",
+      "question": "What does `agsuperbrain clean` do?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `agsuperbrain clean` command is not explicitly defined in the provided code. However, based on the overall structure and naming conventions of the code, it is likely that `agsuperbrain clean` is intended to remove or delete certain files or data generated by the `agsuperbrain` tool. \n\nWithout a specific function or method named `clean` in the provided code, the exact behavior of `agsuperbrain clean` cannot be determined. It may be defined in a separate file or module not included in the provided code. \n\nIf you're looking for a specific implementation, you might want to check the `agsuperbrain/core/pipeline.py` file, which contains a `sync_deleted_files` method in the `CodeGraphPipeline` class. This method removes graph entries for source files that no longer exist. However, this is just a guess, and the actual implementation of `agsuperbrain clean` could be different.",
+            "completion_tokens": 190,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89852,
+            "prompt_tokens": 20863,
+            "total_tokens": 21053,
+            "truncated": true,
+            "wall_s": 2.676
+          },
+          "judge_baseline": {
+            "score": 1,
+            "why": "mostly incorrect, contains hallucinated claims and fails to provide the actual functionality of the command"
+          },
+          "judge_superbrain": {
+            "score": 1,
+            "why": "mostly incorrect, lacks specific details and contains vague claims"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The `agsuperbrain clean` command utilizes the `clean` function from `/home/harish/agsbrepo/agsuperbrain/cli.py`. The specific functionality of this command is not explicitly stated in the provided evidence, but it can be inferred that it is used for cleaning purposes, possibly removing temporary files or other unnecessary data.",
+            "completion_tokens": 69,
+            "evidence_included": 114,
+            "evidence_total": 114,
+            "prompt_chars": 10413,
+            "prompt_tokens": 3325,
+            "total_tokens": 3394,
+            "truncated": false,
+            "wall_s": 1.013
+          }
+        }
+      ]
+    },
+    {
+      "category": "reasoning",
+      "id": "Q05",
+      "question": "How does _ensure_initialized differ from the `init` command?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `_ensure_initialized` function differs from the `init` command in that it checks if the Super-Brain data directory already exists and initializes it only if it doesn't, whereas the `init` command explicitly creates the directory and sets up the initial configuration. The `_ensure_initialized` function is used internally to ensure that the data directory is set up before running other commands, whereas the `init` command is a user-facing command that allows users to explicitly initialize the Super-Brain data directory.",
+            "completion_tokens": 100,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89878,
+            "prompt_tokens": 20866,
+            "total_tokens": 20966,
+            "truncated": true,
+            "wall_s": 2.286
+          },
+          "judge_baseline": {
+            "score": 4,
+            "why": "mostly correct, minor omission of specific implementation details like show_next_steps flag"
+          },
+          "judge_superbrain": {
+            "score": 4,
+            "why": "mostly correct, minor omission of specific implementation details"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The `_ensure_initialized` function and the `init` command are related but differ in their purpose. The `init` command is used to initialize the system, whereas `_ensure_initialized` is likely a helper function that checks if the system is already initialized before proceeding with other operations. The `_ensure_initialized` function may call `init` if the system is not initialized, but its primary goal is to ensure that the initialization step is completed before executing other functions like `_do_full_init`.",
+            "completion_tokens": 98,
+            "evidence_included": 82,
+            "evidence_total": 82,
+            "prompt_chars": 6657,
+            "prompt_tokens": 2173,
+            "total_tokens": 2271,
+            "truncated": false,
+            "wall_s": 1.157
+          }
+        }
+      ]
+    },
+    {
+      "category": "lookup",
+      "id": "Q06",
+      "question": "What does the find_callers MCP tool do, and what Cypher pattern does it run?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `find_callers` MCP tool is not defined in the provided code. However, based on the context of the code, it appears to be a tool that finds callers of a specific function or node in the code graph. \n\nThe Cypher pattern that `find_callers` runs is not explicitly defined in the provided code. However, a similar pattern is used in the `link_mentions` function in the `aguperbrain/core/pipeline.py` file, which links transcripts to functions or concepts via keyword matching. \n\nThe Cypher pattern used in `link_mentions` is:\n```cypher\nMATCH (t:Transcript)-[:MENTIONS]->(f:Function)\n```\nor\n```cypher\nMATCH (t:Transcript)-[:MENTIONS]->(c:Concept)\n```\nThis pattern matches transcripts that mention a specific function or concept.\n\nIn the context of `find_callers`, the Cypher pattern might be:\n```cypher\nMATCH (f:Function)-[:CALLS]->(c:Function)\n```\nThis pattern matches functions that call a specific function. The `find_callers` tool would likely use a similar pattern to find all functions that call a given function.",
+            "completion_tokens": 247,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89894,
+            "prompt_tokens": 20872,
+            "total_tokens": 21119,
+            "truncated": true,
+            "wall_s": 5.346
+          },
+          "judge_baseline": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and incorrect Cypher pattern"
+          },
+          "judge_superbrain": {
+            "score": 1,
+            "why": "mostly incorrect, lacks key details and contains irrelevant information"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The `find_callers` function is available in both `/home/harish/agsbrepo/agsuperbrain/mcp/server.py` and `/home/harish/agsbrepo/paper/evaluation/run_eval.py`. However, the evidence does not specify the Cypher pattern it runs. The `find_callers` function is likely used to find the callers of a specific function, but its exact implementation and the Cypher pattern used are not provided in the given evidence.",
+            "completion_tokens": 99,
+            "evidence_included": 86,
+            "evidence_total": 86,
+            "prompt_chars": 7060,
+            "prompt_tokens": 2282,
+            "total_tokens": 2381,
+            "truncated": false,
+            "wall_s": 1.798
+          }
+        }
+      ]
+    },
+    {
+      "category": "navigation",
+      "id": "Q07",
+      "question": "Which IDE installer commands write an MCP server config (e.g., mcp.json) and which only write a rules/skill file?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `aguperbrain/cli.py` and `aguperbrain/__main__.py` files suggest that the `agsuperbrain` command can be invoked with various subcommands. The `aguperbrain/core/pipeline.py` file contains a `CodeGraphPipeline` class that has a `run` method, which is likely responsible for writing the MCP server config and rules/skill files. \n\nThe `aguperbrain/core/config.py` file contains a `SuperbrainConfig` class that has a `load` method, which loads the configuration from a file. The `aguperbrain/core/pipeline.py` file also contains a `link_documented_by` and `link_mentions` function, which are used to link sections to functions and transcripts to functions/concepts, respectively.\n\nHowever, without more information about the specific installer commands, it's difficult to determine which ones write an MCP server config and which ones only write a rules/skill file. \n\nThe `aguperbrain/mcp/__init__.py` file is empty, which suggests that the MCP server config functionality might be implemented in a separate module or package. \n\nTo answer your question, you would need to examine the code that implements the installer commands and the MCP server config writing functionality. \n\nOne possible approach would be to search for the `mcp.json` file in the codebase and see where it's being written. You could also search for the `rules/skill` file and see where it's being written. \n\nBy examining the code that writes these files, you should be able to determine which installer commands are responsible for writing the MCP server config and which ones only write the rules/skill file. \n\nHowever, without more information or context, it's difficult to provide a more specific answer.",
+            "completion_tokens": 359,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89931,
+            "prompt_tokens": 20880,
+            "total_tokens": 21239,
+            "truncated": true,
+            "wall_s": 5.135
+          },
+          "judge_baseline": {
+            "score": 1,
+            "why": "mostly incorrect, contains hallucinated claims and lacks direct answer to the question"
+          },
+          "judge_superbrain": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and incorrect inclusions"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The functions `install_claude`, `install_gemini`, `install_cursor`, and `install_aider` are IDE installer commands. The `_mcp_server_config` function writes an MCP server config, and is likely used by these installer commands. In contrast, the `install_codex`, `install_opencode`, `install_copilot`, `install_vscode`, `install_openclaw`, `install_droid`, `install_trae`, `install_hermes`, `install_kiro`, and `install_antigravity` commands may only write a rules/skill file, as they do not have an associated MCP server config function.",
+            "completion_tokens": 133,
+            "evidence_included": 63,
+            "evidence_total": 63,
+            "prompt_chars": 5092,
+            "prompt_tokens": 1677,
+            "total_tokens": 1810,
+            "truncated": false,
+            "wall_s": 1.185
+          }
+        }
+      ]
+    },
+    {
+      "category": "lookup",
+      "id": "Q08",
+      "question": "What is in the watcher status JSON file, and which field is used to determine liveness?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The watcher status JSON file contains information about the current state of the watcher, including the state, pid, agsuperbrain version, watcher source file, project root, watch paths, and other diagnostic data. The field used to determine liveness is `worker_alive`, but more accurately, it's the `updated_at` field and the `last_heartbeat_at` field, which are used to calculate the heartbeat age. The `watch-status` command checks the age of the last heartbeat to determine if the watcher is still alive.",
+            "completion_tokens": 107,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89905,
+            "prompt_tokens": 20872,
+            "total_tokens": 20979,
+            "truncated": true,
+            "wall_s": 2.479
+          },
+          "judge_baseline": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and errors, including incorrect fields and missing PID-alive checks"
+          },
+          "judge_superbrain": {
+            "score": 2,
+            "why": "partially correct, multiple omissions and significant errors, lacks specific fields in JSON file and correct liveness determination"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The `watcher_status` function and `_read_watcher_status` function are related to the watcher status. The `FileWatcher._write_status` function writes the status to a file, but the specific fields in the JSON file are not specified. However, the `_is_pid_alive` function suggests that the 'pid' field may be used to determine liveness.",
+            "completion_tokens": 75,
+            "evidence_included": 92,
+            "evidence_total": 92,
+            "prompt_chars": 7557,
+            "prompt_tokens": 2441,
+            "total_tokens": 2516,
+            "truncated": false,
+            "wall_s": 0.891
+          }
+        }
+      ]
+    },
+    {
+      "category": "reasoning",
+      "id": "Q09",
+      "question": "How does the VectorIndexPipeline decide which graph nodes to embed?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The `VectorIndexPipeline` decides which graph nodes to embed by collecting all nodes of types \"Module\", \"Function\", \"Section\", \"Concept\", and \"Transcript\" from the graph store. It then embeds these nodes using the `TextEmbedder` and upserts the resulting vectors into the vector store. The `_upsert_rows` method is used to embed and upsert the nodes in batches.",
+            "completion_tokens": 85,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89885,
+            "prompt_tokens": 20866,
+            "total_tokens": 20951,
+            "truncated": true,
+            "wall_s": 4.565
+          },
+          "judge_baseline": {
+            "score": 3,
+            "why": "partially correct, omits details on non-empty text condition and incremental mode"
+          },
+          "judge_superbrain": {
+            "score": 1,
+            "why": "mostly incorrect, contains hallucinated claims about specific functions"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The VectorIndexPipeline uses the `_concepts` and `_node_id_to_point_id` functions to decide which graph nodes to embed. The `_concepts` function is likely used to identify the concepts or nodes of interest, while the `_node_id_to_point_id` function maps node IDs to point IDs, which can then be used for embedding.",
+            "completion_tokens": 71,
+            "evidence_included": 88,
+            "evidence_total": 88,
+            "prompt_chars": 7311,
+            "prompt_tokens": 2324,
+            "total_tokens": 2395,
+            "truncated": false,
+            "wall_s": 1.466
+          }
+        }
+      ]
+    },
+    {
+      "category": "lookup",
+      "id": "Q10",
+      "question": "What node labels and edge labels does the K\u00f9zuDB graph schema declare?",
+      "reps": [
+        {
+          "baseline": {
+            "answer": "The K\u00f9zuDB graph schema declares the following node labels and edge labels: \n- Node labels: Module, Function, Section, Concept, Transcript, Document, AudioSource \n- Edge labels: CALLS, DEFINED_IN, CONTAINS, DOCUMENTED_BY, MENTIONS.",
+            "completion_tokens": 58,
+            "files_included": 25,
+            "files_skipped_oversized": 3,
+            "files_total": 83,
+            "prompt_chars": 89888,
+            "prompt_tokens": 20869,
+            "total_tokens": 20927,
+            "truncated": true,
+            "wall_s": 4.758
+          },
+          "judge_baseline": {
+            "score": 2,
+            "why": "multiple omissions and errors in node and edge labels"
+          },
+          "judge_superbrain": {
+            "score": 1,
+            "why": "candidate answer does not provide the node and edge labels, and instead speculates about the functions used to create them"
+          },
+          "rep": 0,
+          "superbrain": {
+            "answer": "The provided evidence does not specify the node labels and edge labels declared by the K\u00f9zuDB graph schema. However, the `GraphStore.init_schema` function is likely responsible for initializing the schema, and `GraphStore._create_node` and `GraphStore._merge_edge` functions may be used to create nodes and edges with specific labels.",
+            "completion_tokens": 70,
+            "evidence_included": 75,
+            "evidence_total": 75,
+            "prompt_chars": 6264,
+            "prompt_tokens": 2005,
+            "total_tokens": 2075,
+            "truncated": false,
+            "wall_s": 2.175
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "baseline_input_tokens_mean": 20870,
+    "baseline_output_tokens_mean": 195.9,
+    "baseline_prompt_chars_cap": 90000,
+    "baseline_total_tokens_sum": 210659,
+    "input_token_ratio_baseline_over_sb": 9.49,
+    "judge_caveat": "judge model == answerer model; this is known weak grading (circular). Treat scores as upper-bound estimates.",
+    "judge_model": "llama-3.3-70b-versatile",
+    "judge_score_baseline_mean": 2,
+    "judge_score_superbrain_mean": 1.7,
+    "model": "llama-3.3-70b-versatile",
+    "n_queries": 10,
+    "reps_per_query": 1,
+    "superbrain_input_tokens_mean": 2198.7,
+    "superbrain_output_tokens_mean": 85,
+    "superbrain_prompt_chars_cap": 30000,
+    "superbrain_total_tokens_sum": 22837
+  }
+}

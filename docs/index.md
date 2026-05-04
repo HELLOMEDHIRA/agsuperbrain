@@ -95,15 +95,38 @@ Any framework that speaks MCP also works: LangChain, LangGraph, AutoGen, CrewAI,
 
 ---
 
+## Measured performance
+
+From a self-corpus pilot (the `agsuperbrain` repository itself; reproducible via `paper/evaluation/run_eval.py`).
+
+**Token cost — same 10 questions, same LLM (Llama-3.3-70B):**
+
+![Token cost: 210,659 vs 22,837](../paper/fig5-rq3-token-comparison.png)
+
+- **Without Super-Brain:** 210,659 tokens total (mean 21,066 per question)
+- **With Super-Brain:**    22,837 tokens total (mean  2,284 per question)
+- **9.22× fewer tokens overall**, comparable answer quality (within noise)
+
+**Extraction & retrieval:**
+
+- **100% extraction** per code-file on Python (40/40) and JavaScript (36/36)
+- **90–100% Section coverage** on Markdown and HTML via the document pipeline
+- **Sub-3 ms p95** on `find_callers` / `find_callees` graph queries; **7.4 ms p95** on transitive `closure` (depth 3)
+- **22.9 MiB on disk** for the full code+doc index of a 5.4 MiB repository
+
+Pilot scope, single-LLM caveat, and full numbers: see [the paper](https://github.com/HELLOMEDHIRA/agsuperbrain/blob/main/paper/super-brain.md#5-evaluation).
+
+---
+
 ## Privacy by default
 
 Every byte Super-Brain touches stays on your machine:
 
 - Graph database: local KùzuDB file
-- Vector store: local Qdrant directory
-- Embeddings: local sentence-transformers
-- LLM (optional): local llama.cpp
-- Transcription: local faster-whisper
+- Vector store: local [Qdrant](https://qdrant.tech) directory
+- Embeddings: local [sentence-transformers](https://www.sbert.net)
+- LLM (optional): local [llama.cpp](https://github.com/ggerganov/llama.cpp)
+- Transcription: local [faster-whisper](https://github.com/SYSTRAN/faster-whisper)
 
 Nothing is uploaded. No telemetry. No account required.
 

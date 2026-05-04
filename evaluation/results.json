@@ -1,0 +1,189 @@
+{
+  "corpus": {
+    "by_extension": {
+      ".css": 2,
+      ".gz": 1,
+      ".html": 9,
+      ".js": 36,
+      ".json": 5,
+      ".lock": 1,
+      ".map": 4,
+      ".md": 10,
+      ".png": 5,
+      ".pptx": 1,
+      ".py": 50,
+      ".tex": 1,
+      ".toml": 1,
+      ".txt": 2,
+      ".xml": 1,
+      ".yaml": 1,
+      ".yml": 1
+    },
+    "by_tier": {
+      "T1": 86,
+      "other": 45
+    },
+    "root": "/home/harish/agsbrepo",
+    "total_files": 131
+  },
+  "coverage_by_extension": {
+    ".html": {
+      "coverage_func_pct": 0.0,
+      "coverage_section_pct": 100.0,
+      "files": 9,
+      "files_with_extracted_function": 0,
+      "files_with_extracted_section": 9,
+      "pipeline": "doc",
+      "tier": "other"
+    },
+    ".js": {
+      "coverage_func_pct": 100.0,
+      "coverage_section_pct": 0.0,
+      "files": 36,
+      "files_with_extracted_function": 36,
+      "files_with_extracted_section": 0,
+      "pipeline": "code",
+      "tier": "T1"
+    },
+    ".json": {
+      "coverage_func_pct": 0.0,
+      "coverage_section_pct": 0.0,
+      "files": 5,
+      "files_with_extracted_function": 0,
+      "files_with_extracted_section": 0,
+      "pipeline": "none",
+      "tier": "other"
+    },
+    ".md": {
+      "coverage_func_pct": 0.0,
+      "coverage_section_pct": 90.0,
+      "files": 10,
+      "files_with_extracted_function": 0,
+      "files_with_extracted_section": 9,
+      "pipeline": "doc",
+      "tier": "other"
+    },
+    ".png": {
+      "coverage_func_pct": 0.0,
+      "coverage_section_pct": 0.0,
+      "files": 5,
+      "files_with_extracted_function": 0,
+      "files_with_extracted_section": 0,
+      "pipeline": "none",
+      "tier": "other"
+    },
+    ".py": {
+      "coverage_func_pct": 80.0,
+      "coverage_section_pct": 0.0,
+      "files": 50,
+      "files_with_extracted_function": 40,
+      "files_with_extracted_section": 0,
+      "pipeline": "code",
+      "tier": "T1"
+    }
+  },
+  "doc_ingestion": {
+    "errors": [
+      {
+        "error": "File conversion failed after 1 attempts:\n - PptxConverter threw MissingDependencyException with message: PptxConverter recognized the input as a potential .pptx file, but the dependencies needed to re",
+        "file": "paper/super-brain-deck.pptx"
+      }
+    ],
+    "files_attempted": 22,
+    "files_failed": 1,
+    "files_ok": 21,
+    "wall_seconds": 34.547
+  },
+  "extraction": {
+    "CALLS": 4493,
+    "CONTAINS": 0,
+    "Class": -1,
+    "Concept": 268,
+    "DEFINES": -1,
+    "Document": 12,
+    "Function": 2271,
+    "IMPORTS": -1,
+    "Module": 76,
+    "Section": 358
+  },
+  "ingestion": {
+    "throughput_files_per_sec": 0.27,
+    "wall_seconds": 488.708
+  },
+  "latency": {
+    "closure_d3": {
+      "errors": 0,
+      "label": "closure_d3",
+      "max_ms": 14.054,
+      "mean_ms": 4.963,
+      "min_ms": 3.583,
+      "n": 30,
+      "p50_ms": 4.298,
+      "p95_ms": 7.399
+    },
+    "embed_only": {
+      "errors": 0,
+      "label": "embed_only",
+      "max_ms": 9.454,
+      "mean_ms": 7.039,
+      "min_ms": 5.137,
+      "n": 30,
+      "p50_ms": 7.059,
+      "p95_ms": 9.018
+    },
+    "find_callees": {
+      "errors": 0,
+      "label": "find_callees",
+      "max_ms": 3.388,
+      "mean_ms": 2.312,
+      "min_ms": 1.329,
+      "n": 30,
+      "p50_ms": 2.303,
+      "p95_ms": 3.058
+    },
+    "find_callers": {
+      "errors": 0,
+      "label": "find_callers",
+      "max_ms": 3.08,
+      "mean_ms": 2.056,
+      "min_ms": 1.256,
+      "n": 30,
+      "p50_ms": 2.002,
+      "p95_ms": 2.493
+    },
+    "search_code": {
+      "errors": 0,
+      "label": "search_code",
+      "max_ms": 1203.832,
+      "mean_ms": 532.811,
+      "min_ms": 240.266,
+      "n": 30,
+      "p50_ms": 491.425,
+      "p95_ms": 781.462
+    }
+  },
+  "meta": {
+    "agsuperbrain_version": "unknown",
+    "cpu_count": 8,
+    "machine": "x86_64",
+    "measure_n": 30,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "timestamp": "2026-05-03T05:18:22Z",
+    "top_k": 5,
+    "warmup": 3
+  },
+  "storage": {
+    "kuzu_bytes": 10995689,
+    "kuzu_human": "10.5 MiB",
+    "qdrant_bytes": 13050385,
+    "qdrant_human": "12.4 MiB",
+    "total_bytes": 24046074,
+    "total_human": "22.9 MiB"
+  },
+  "vector_index": {
+    "total_vectors": 2973,
+    "wall_seconds": 109.384
+  }
+}

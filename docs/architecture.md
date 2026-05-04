@@ -31,9 +31,9 @@ Everything below layer 4 is deterministic. No LLM calls happen during ingestion.
 
 **Job**: turn raw inputs (code files, documents, audio) into parsed intermediate representations.
 
-- **Code** — tree-sitter with the full language pack. 306 languages, one consistent AST interface.
-- **Documents** — MarkItDown converts PDF, DOCX, PPTX, MD, TXT, HTML into normalized markdown with headings preserved.
-- **Audio / video** — yt-dlp fetches remote sources; FFmpeg normalizes to WAV; faster-whisper transcribes locally with word-level timestamps.
+- **Code** — [tree-sitter](https://tree-sitter.github.io) with [tree-sitter-language-pack](https://github.com/Goldziher/tree-sitter-language-pack). 306 languages, one consistent AST interface.
+- **Documents** — [MarkItDown](https://github.com/microsoft/markitdown) converts PDF, DOCX, PPTX, MD, TXT, HTML into normalized markdown with headings preserved.
+- **Audio / video** — [yt-dlp](https://github.com/yt-dlp/yt-dlp) fetches remote sources; [FFmpeg](https://ffmpeg.org) normalizes to WAV; [faster-whisper](https://github.com/SYSTRAN/faster-whisper) transcribes locally with word-level timestamps.
 
 No network calls happen here unless the user explicitly asks for a YouTube URL. Transcription runs entirely on-device.
 
@@ -60,7 +60,7 @@ Two stores work together:
 
 ### KùzuDB — the graph
 
-Embedded graph database. No server, no daemon. The whole database is a file (or a directory of files) in your project. Supports Cypher, ACID transactions, and multi-gigabyte graphs on commodity hardware.
+[KùzuDB](https://kuzudb.com) is an embedded graph database. No server, no daemon. The whole database is a file (or a directory of files) in your project. Supports Cypher, ACID transactions, and multi-gigabyte graphs on commodity hardware.
 
 Node types: `Module`, `Function`, `Class`, `Document`, `Section`, `Concept`, `Audio`, `Transcript`.
 
@@ -68,7 +68,7 @@ Edge types: `CALLS`, `DEFINES`, `IMPORTS`, `CONTAINS`, `REFERENCES`, `TRANSCRIBE
 
 ### Qdrant — the vector store
 
-Local-mode Qdrant, same story: embedded, file-backed, no server required. Holds 384-dimensional embeddings produced by a local sentence-transformer model (default: `all-MiniLM-L6-v2`).
+Local-mode [Qdrant](https://qdrant.tech), same story: embedded, file-backed, no server required. Holds 384-dimensional embeddings produced by a local [sentence-transformer](https://www.sbert.net) model (default: `all-MiniLM-L6-v2`).
 
 Every node that has meaningful text (function body, doc section, transcript) is embedded and cross-indexed by `node_id` with the graph.
 
@@ -88,7 +88,7 @@ The result is a ranked list of nodes with source paths, line numbers, and confid
 
 ### Optional local LLM
 
-For rich natural-language answers, an optional llama.cpp integration runs Llama-3.2-1B locally (~700 MB model file, downloaded once). The LLM receives only the ranked evidence bundle — never the whole codebase — and composes the prose.
+For rich natural-language answers, an optional [llama.cpp](https://github.com/ggerganov/llama.cpp) integration runs [Llama-3.2-1B](https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/) locally (~700 MB model file, downloaded once). The LLM receives only the ranked evidence bundle — never the whole codebase — and composes the prose.
 
 Turning the LLM off gives you pure deterministic evidence. Turning it on adds phrasing, not facts.
 
@@ -137,17 +137,31 @@ The architecture is built to keep surprises out:
 
 ## Performance characteristics
 
-Rough ballpark numbers on a 2024-era laptop:
+Measured on a self-corpus pilot (the `agsuperbrain` repository itself, 131 files, 86 Tier-1 source files; x86_64, 8 vCPU under WSL2, ext4). Reproducible via [`paper/evaluation/run_eval.py`](https://github.com/HELLOMEDHIRA/agsuperbrain/blob/main/paper/evaluation/run_eval.py).
 
-| Operation | Speed |
-|---|---|
-| Parse + ingest source code | 500–2,000 files / minute |
-| Build vector index | ~200 nodes / second |
-| Semantic search query | < 50 ms |
-| Graph expansion (depth 2) | < 100 ms |
-| End-to-end `ask` | < 1 s (deterministic) or 2–5 s (with local LLM) |
+**Query latency** (n=30 per primitive, 3 warmup):
 
-Numbers vary with file size, language, and hardware. The file watcher keeps steady-state overhead to near zero — changed files re-parse in milliseconds.
+| Operation | p50 | p95 |
+|---|---:|---:|
+| `find_callers` (Cypher graph traversal) | 2.0 ms | 2.5 ms |
+| `find_callees` (Cypher graph traversal) | 2.3 ms | 3.1 ms |
+| `closure` (depth 3, transitive) | 4.3 ms | 7.4 ms |
+| `embed_only` (warm sentence-transformer) | 7.1 ms | 9.0 ms |
+| `search_code` (hybrid: vector seed + graph expansion) | 491 ms | 781 ms |
+
+**Cold-start cost** (one-time, then incremental):
+
+| Phase | Wall time |
+|---|---:|
+| Code ingest (Pass A indexing + Pass B call resolution) | 488.7 s |
+| Document ingest (`.md`, `.html`, `.pdf`, `.docx`, `.pptx`) | 34.5 s |
+| Vector indexing (2,973 nodes, 384-dim) | 109.4 s |
+
+**Storage footprint:** 22.9 MiB total on disk (KùzuDB graph + Qdrant vector store) for 5.4 MiB of indexed source/doc content.
+
+**Steady state:** the file watcher debounces changes (default 400 ms) and re-indexes only the affected files — typically milliseconds per change. Pass-B call resolution on large repos is the primary candidate for optimisation in upcoming releases.
+
+Latency and throughput vary with file size, language, and hardware. Pilot scope and full caveats are in [the paper](https://github.com/HELLOMEDHIRA/agsuperbrain/blob/main/paper/super-brain.md#5-evaluation).
 
 ---
 
